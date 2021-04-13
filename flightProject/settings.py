@@ -25,8 +25,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',  # django rest framework
+    'rest_framework.authtoken',  # django rest framework token
     'flightAPP.apps.FlightappConfig'  # flight app
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
