@@ -1,5 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
 
 from . import views
 
@@ -14,5 +15,6 @@ urlpatterns = [
     # add router url to urlpatterns
     path('', include(router.urls)),
     path('flight/search/', views.find_flights),
-    path('flight/reserve', views.save_reservation)
+    path('flight/reserve', views.save_reservation),
+    path('api-token/', obtain_auth_token, name='api_auth_token')
 ]
