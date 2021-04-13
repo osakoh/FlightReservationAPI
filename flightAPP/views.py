@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import status
 
 from .models import Flight, Passenger, Reservation
 from .serializers import FlightSerializer, PassengerSerializer, ReservationSerializer
@@ -18,6 +19,23 @@ def find_flights(request):
                                     date_of_departure=request.data['date_of_departure'])
     serializer = FlightSerializer(flights, many=True)  # serializer object
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def save_reservation(request):
+    flight = Flight.objects.get(id=request.data['flightId'])
+
+    # create passenger object
+    passenger = Passenger.objects.create(first_name=request.data['first_name'],
+                                         last_name=request.data['last_name'],
+                                         middle_name=request.data['middle_name'],
+                                         email=request.data['email'],
+                                         phone=request.data['phone'])
+
+    reservation = Reservation.objects.create(flight=flight, passenger=passenger)
+
+    reservation.save()
+    return Response(status=status.HTTP_201_CREATED)
 
 
 class FlightViewSet(viewsets.ModelViewSet):
