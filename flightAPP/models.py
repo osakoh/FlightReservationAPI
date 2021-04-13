@@ -2,26 +2,26 @@ from django.db import models
 
 
 class Flight(models.Model):  # parent model of Passenger and Reservaton
-    flightNumber = models.CharField(max_length=15)
-    operatingAirlines = models.CharField(max_length=25)
-    departureCity = models.CharField(max_length=25)
-    arrivalCity = models.CharField(max_length=25)
-    dateOfDeparture = models.DateField()
-    estimatedTimeOfDeparture = models.TimeField()
+    flight_number = models.CharField(max_length=15)
+    operating_airline = models.CharField(max_length=25)
+    departure_city = models.CharField(max_length=25)
+    arrival_city = models.CharField(max_length=25)
+    date_of_departure = models.DateField()
+    estimated_time_of_departure = models.TimeField()
 
     def __str__(self):
-        return f"Flight Number:{self.flightNumber}"
+        return f"Flight Number: {self.flight_number}"
 
 
 class Passenger(models.Model):
-    firstName = models.CharField(max_length=25)
-    lastName = models.CharField(max_length=25)
-    middleName = models.CharField(max_length=25)
+    first_name = models.CharField(max_length=25)
+    last_name = models.CharField(max_length=25)
+    middle_name = models.CharField(max_length=25)
     email = models.EmailField(max_length=25)
     phone = models.CharField(max_length=12)
 
     def __str__(self):
-        return f"{self.firstName}. {self.middleName[0]} .{self.lastName}"
+        return f"{self.first_name}. {self.middle_name[0]} .{self.last_name}"
 
 
 class Reservation(models.Model):
@@ -29,4 +29,5 @@ class Reservation(models.Model):
     passenger = models.OneToOneField(Passenger, on_delete=models.CASCADE, related_name='passenger')
 
     def __str__(self):
-        return f"Flight Number:{self.flight.flightNumber} - Name: {self.passenger.firstName}.{self.passenger.middleName[0]}.{self.passenger.lastName} "
+        return f"Flight Number:{self.flight.flight_number} - " \
+               f"Name: {self.passenger.first_name}.{self.passenger.middle_name[0]}.{self.passenger.last_name} "

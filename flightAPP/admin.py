@@ -12,8 +12,8 @@ class ReservationInline(admin.TabularInline):
 
 @admin.register(Passenger)
 class PassengerAdmin(admin.ModelAdmin):
-    list_display = ['firstName', 'lastName', 'middleName', 'email', 'phone']
-    list_display_links = ['firstName', 'lastName', 'middleName', 'email', 'phone']
+    list_display = ['first_name', 'last_name', 'middle_name', 'email', 'phone']
+    list_display_links = ['first_name', 'last_name', 'middle_name', 'email', 'phone']
     inlines = [ReservationInline]
 
 
@@ -25,12 +25,12 @@ class Reservation(admin.ModelAdmin):
 
 @admin.register(Flight)
 class FlightAdmin(admin.ModelAdmin):
-    list_display = ['flightNumber', 'operatingAirlines',
-                    'departureCity', 'arrivalCity',
-                    'dateOfDeparture', 'estimatedTimeOfDeparture']
+    list_display = ['flight_number', 'operating_airline',
+                    'departure_city', 'arrival_city',
+                    'date_of_departure', 'estimated_time_of_departure']
 
-    list_display_links = ['flightNumber', 'operatingAirlines',
-                          'departureCity', 'arrivalCity',
-                          'dateOfDeparture', 'estimatedTimeOfDeparture']
+    list_display_links = ['flight_number', 'operating_airline',
+                          'departure_city', 'arrival_city',
+                          'date_of_departure', 'estimated_time_of_departure']
 
     inlines = [ReservationInline]
