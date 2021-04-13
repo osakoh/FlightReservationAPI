@@ -45,9 +45,9 @@ class FlightViewSet(viewsets.ModelViewSet):
     viewsets.ReadOnlyModelViewSet: exposes only the read-based operations i.e get(many) & get(single/detail)
     viewsets.ModelViewSet: handles all pk and non-pk based operations
     """
-    queryset = Flight.objects.all()
+    queryset = Flight.objects.all().order_by('id')
     serializer_class = FlightSerializer
-    permission_classes = (IsAuthenticated, DjangoModelPermissions)
+    permission_classes = (IsAuthenticated,)
 
 
 class PassengerViewSet(viewsets.ModelViewSet):
@@ -55,7 +55,7 @@ class PassengerViewSet(viewsets.ModelViewSet):
     viewsets.ReadOnlyModelViewSet: exposes only the read-based operations i.e get(many) & get(single/detail)
     viewsets.ModelViewSet: handles all pk and non-pk based operations
     """
-    queryset = Passenger.objects.all()
+    queryset = Passenger.objects.all().order_by('id')
     serializer_class = PassengerSerializer
 
 
@@ -64,5 +64,5 @@ class ReservationViewSet(viewsets.ModelViewSet):
     viewsets.ReadOnlyModelViewSet: exposes only the read-based operations i.e get(many) & get(single/detail)
     viewsets.ModelViewSet: handles all pk and non-pk based operations
     """
-    queryset = Reservation.objects.all()
+    queryset = Reservation.objects.all().order_by('id')
     serializer_class = ReservationSerializer
