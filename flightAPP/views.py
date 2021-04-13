@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
 
 from .models import Flight, Passenger, Reservation
 from .serializers import FlightSerializer, PassengerSerializer, ReservationSerializer
@@ -46,6 +47,7 @@ class FlightViewSet(viewsets.ModelViewSet):
     """
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer
+    permission_classes = (IsAuthenticated, DjangoModelPermissions)
 
 
 class PassengerViewSet(viewsets.ModelViewSet):
