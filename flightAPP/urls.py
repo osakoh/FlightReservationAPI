@@ -13,6 +13,6 @@ router.register('reservations', views.ReservationViewSet)
 urlpatterns = [
     # add router url to urlpatterns
     path('', include(router.urls)),
-    path('flights/search/', views.find_flights),
-    # path('flights/')
+    path('flight/search/', views.find_flights),
+    path('flight/reserve', views.save_reservation)
 ]

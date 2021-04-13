@@ -14,16 +14,18 @@ def find_flights(request):
     request.data: contains the data received from DRF
     :returns: queryset of flights matching the departure_city, arrival_city, and date_of_departure in the request
     """
-    flights = Flight.objects.filter(departure_city=request.data['departure_city'],
-                                    arrival_city=request.data['arrival_city'],
-                                    date_of_departure=request.data['date_of_departure'])
+    # contains=case-insensitive; gte=greater than or equal to
+    flights = Flight.objects.filter(departure_city__contains=request.data['departure_city'],
+                                    arrival_city__icontains=request.data['arrival_city'],
+                                    date_of_departure__gte=request.data['date_of_departure'])
     serializer = FlightSerializer(flights, many=True)  # serializer object
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 def save_reservation(request):
-    flight = Flight.objects.get(id=request.data['flightId'])
+    # print(request.data['flight'])
+    flight = Flight.objects.get(id=request.data['flight'])
 
     # create passenger object
     passenger = Passenger.objects.create(first_name=request.data['first_name'],
