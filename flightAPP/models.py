@@ -1,4 +1,8 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+from django.conf import settings
 
 
 class Flight(models.Model):  # parent model of Passenger and Reservaton
@@ -31,3 +35,16 @@ class Reservation(models.Model):
     def __str__(self):
         return f"Flight Number:{self.flight.flight_number} - " \
                f"Name: {self.passenger.first_name}.{self.passenger.middle_name[0]}.{self.passenger.last_name} "
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance, created, *args, **kwargs):
+    """
+    sender: is the User model
+    instance: is the user objected that created
+    created: boolean value(True/False)
+    creates a Token automatically when a user is created in the DB
+    """
+    if created:
+        print(f"sender: {sender}\ninstance: {instance}\ncreated: {created}")
+        Token.objects.create(user=instance)
