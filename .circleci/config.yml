@@ -13,12 +13,14 @@ jobs:
 
     steps:
       - checkout
+      - python/install-packages
+
       # Download and cache dependencies
-      #      - restore_cache:
-      #          keys:
-      #            - v1-dependencies-{{ checksum "FlightReservationAPI/requirements.txt" }}
-      #            # fallback to using the latest cache if no exact match is found
-      #            - v1-dependencies-
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "FlightReservationAPI/requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run:
           name: install dependencies
