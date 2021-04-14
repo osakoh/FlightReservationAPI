@@ -88,4 +88,6 @@ jobs:
             - "/usr/local/lib/python3.7/site-packages"
       - run:
           command: |
+            . venv/bin/activate
+            cd FlightReservationAPI
             pipenv run python manage.py test
