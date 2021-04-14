@@ -42,7 +42,7 @@ class TestFlight(APITestCase):
         user = setup_user()
         token = user.auth_token.key
         # adds the appropriate `Authorization:` header on all requests.
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token)
+        self.client.credentials(HTTP_AUTHORIZATION='Token' + token)
         data = {
             "flight_number": "ATS-BTN",
             "operating_airline": "AirTravels",
