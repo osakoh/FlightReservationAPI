@@ -46,5 +46,5 @@ def create_auth_token(sender, instance, created, *args, **kwargs):
     creates a Token automatically when a user is created in the DB
     """
     if created:
-        print(f"sender: {sender}\ninstance: {instance}\ncreated: {created}")
+        # print(f"sender: {sender}\ninstance: {instance}\ncreated: {created}")
         Token.objects.create(user=instance)
