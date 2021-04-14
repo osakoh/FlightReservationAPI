@@ -36,10 +36,10 @@ jobs:
           command: |
             sudo pip install pipenv
             pipenv install
-            python3 -m pip install --upgrade pip
-            python3 -m venv ./venv
-            . venv/bin/activate
-            pip install -r FlightReservationAPI/requirements.txt
+#            python3 -m pip install --upgrade pip
+#            python3 -m venv ./venv
+#            . venv/bin/activate
+#            pip install -r FlightReservationAPI/requirements.txt
       - save_cache:
           key:
             #            - deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
