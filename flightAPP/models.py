@@ -37,14 +37,14 @@ class Reservation(models.Model):
                f"Name: {self.passenger.first_name}.{self.passenger.middle_name[0]}.{self.passenger.last_name} "
 
 
-# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-# def create_auth_token(sender, instance, created, *args, **kwargs):
-#     """
-#     sender: is the User model
-#     instance: is the user objected that created
-#     created: boolean value(True/False)
-#     creates a Token automatically when a user is created in the DB
-#     """
-#     if created:
-#         # print(f"sender: {sender}\ninstance: {instance}\ncreated: {created}")
-#         Token.objects.create(user=instance)
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance, created, *args, **kwargs):
+    """
+    sender: is the User model
+    instance: is the user objected that created
+    created: boolean value(True/False)
+    creates a Token automatically when a user is created in the DB
+    """
+    if created:
+        # print(f"sender: {sender}\ninstance: {instance}\ncreated: {created}")
+        Token.objects.create(user=instance)

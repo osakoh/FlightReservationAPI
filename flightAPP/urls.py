@@ -18,5 +18,5 @@ urlpatterns = [
     path('flight/search/', views.find_flights),
     path('flight/reserve', views.save_reservation),
     # token
-    # path('api-token/', obtain_auth_token, name='api_auth_token'),
+    path('api-token/', obtain_auth_token, name='api_auth_token'),
 ]
