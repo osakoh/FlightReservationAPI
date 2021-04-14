@@ -9,25 +9,25 @@ jobs:
       # specify the version you desire here
       - image: circleci/python:3.7.9
 
-    working_directory: ~/repo
+    working_directory: ~/FlightReservationAPI
 
     steps:
       - checkout
       - python/install-packages
 
-      - restore_cache: # ensure this step occurs *before* installing dependencies
-          keys:
-            - deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-            - v1-dependencies-{{ checksum "FlightReservationAPI/requirements.txt" }}
-            #            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      #      - restore_cache: # ensure this step occurs *before* installing dependencies
+      #          keys:
+      #            - deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      #            - v1-dependencies-{{ checksum "FlightReservationAPI/requirements.txt" }}
+      #            #            # fallback to using the latest cache if no exact match is found
+      #            - v1-dependencies-
 
       # Download and cache dependencies
-      #      - restore_cache:
-      #          keys:
-      #            - v1-dependencies-{{ checksum "FlightReservationAPI/requirements.txt" }}
-      #            # fallback to using the latest cache if no exact match is found
-      #            - v1-dependencies-
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "FlightReservationAPI/requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run:
           name: install dependencies
@@ -40,7 +40,7 @@ jobs:
             pip install -r FlightReservationAPI/requirements.txt
       - save_cache:
           key:
-#            - deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+            #            - deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
             v1-dependencies-{{ checksum "requirements.txt" }}
           paths:
             - ".venv"
