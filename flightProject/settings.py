@@ -26,6 +26,7 @@ INSTALLED_APPS = [
 
     'rest_framework',  # django rest framework
     'rest_framework.authtoken',  # django rest framework token
+    'rest_framework_swagger',  # swagger documentation
     'flightAPP.apps.FlightappConfig'  # flight app
 ]
 
@@ -72,24 +73,23 @@ WSGI_APPLICATION = 'flightProject.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # PostgreSQL
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'flight_db',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'PORT': 5432,
-    }
-}
-
-# sqlite3 db
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'flight_db',
+#         'USER': 'postgres',
+#         'PASSWORD': '',
+#         'PORT': 5432,
 #     }
 # }
 
+# sqlite3 db
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -114,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = True
 
