@@ -17,7 +17,7 @@ jobs:
 
       - restore_cache: # ensure this step occurs *before* installing dependencies
           keys:
-#            - deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+            - deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
             - v1-dependencies-{{ checksum "FlightReservationAPI/requirements.txt" }}
             #            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
