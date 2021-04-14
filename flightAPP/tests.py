@@ -18,7 +18,15 @@ class TestFlight(APITestCase):
         self.view = views.FlightViewSet.as_view({'get': 'list', 'post': 'create'})
         self.uri = '/api/flights/'
 
-    def test_list(self):
+    def test_list_without_auth(self):
+        """
+        test the list of flight
+        """
+        response = self.client.get(self.uri)
+        self.assertEqual(response.status_code, 401,
+                         'Expected Response Code 401, received {0} instead.'.format(response.status_code))
+
+    def test_list_with_auth(self):
         """
         test the list of flight
         """
