@@ -19,15 +19,15 @@ jobs: # A basic unit of work in a run
           command: |
             sudo pip install pipenv
             pipenv install
-#            pipenv install -r FlightReservationAPI/requirements.txt
+            pipenv pip install -r FlightReservationAPI/requirements.txt
       - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 #          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
             - "venv"
       - run:
-          command: |
-            pipenv run python manage.py test
+#          command: |
+#            pipenv run python manage.py test
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
