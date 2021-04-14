@@ -16,7 +16,11 @@ jobs:
       - python/install-packages
 
       - restore_cache: # ensure this step occurs *before* installing dependencies
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          keys:
+            - deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+            - v1-dependencies-{{ checksum "FlightReservationAPI/requirements.txt" }}
+            #            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       # Download and cache dependencies
       #      - restore_cache:
@@ -35,8 +39,8 @@ jobs:
 #            source venv/bin/activate
 #            pip install -r FlightReservationAPI/requirements.txt
       - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          #          key: v1-dependencies-{{ checksum "requirements.txt" }}
+#          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
           paths:
             - ".venv"
             - "/usr/local/bin"
@@ -45,9 +49,9 @@ jobs:
       - run:
           name: run django tests
           command: |
-            source venv/bin/activate
+            . venv/bin/activate
             cd FlightReservationAPI
-            pipenv run python manage.py test
+            python manage.py test
 
       - store_test_results:
           path: test-results
