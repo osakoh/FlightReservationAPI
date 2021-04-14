@@ -25,8 +25,8 @@ jobs: # A basic unit of work in a run
 #          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
             - "venv"
-#      - run:
-#          command: |
+      - run:
+          command: |
             pipenv run python manage.py test
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
