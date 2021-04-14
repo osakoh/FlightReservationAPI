@@ -90,7 +90,7 @@ jobs:
       - run:
           command: |
 #            . venv/bin/activate
-            cd ~/FlightReservationAPI
+            cd FlightReservationAPI
       #            pipenv run python manage.py test
 
       - store_test_results:
