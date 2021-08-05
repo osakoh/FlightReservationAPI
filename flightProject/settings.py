@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'rest_framework',  # django rest framework
     'rest_framework.authtoken',  # django rest framework token
     'rest_framework_swagger',  # swagger documentation
-    'flightAPP.apps.FlightappConfig'  # flight app
+    'flightAPP.apps.FlightappConfig',  # flight app
 ]
 
 REST_FRAMEWORK = {
